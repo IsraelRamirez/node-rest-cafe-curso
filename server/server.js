@@ -7,6 +7,6 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use("/", routes())
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, process.env.HOST, () => {
     console.log(`Escuchando puerto ${process.env.PORT}`);
 })
