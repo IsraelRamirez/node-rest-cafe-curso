@@ -1,20 +1,15 @@
 const express = require('express')
 const router = express.Router()
 
+const usuarioControllers = require('../controllers/usuarioController')
+
 module.exports = () => {
-
-    router.get("/", (req, res) => {
-        res.status(201)
-        res.send("Inicio")
-    })
-
-    router.get("/hola", (req, res) => {
-        res.send("Hola")
-    })
-
-    router.get("/data", (req, res) => {
-        res.send("Data")
-    })
+    // Usuario
+    router.get("/usuario", usuarioControllers.getUsuarios)
+    router.get("/usuario/:id", usuarioControllers.getUsuario)
+    router.post("/usuario", usuarioControllers.newUsuario)
+    router.put("/usuario/:id", usuarioControllers.setUsuario)
+    router.delete("/usuario/:id", usuarioControllers.deleteUsuario)
 
     return router
 }

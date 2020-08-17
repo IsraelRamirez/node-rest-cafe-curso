@@ -2,7 +2,16 @@ require('./config/config')
 const express = require('express')
 const routes = require('./routes/Routes')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+
 const app = express()
+
+mongoose.connect(process.env.MONGODB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+})
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use("/", routes())
