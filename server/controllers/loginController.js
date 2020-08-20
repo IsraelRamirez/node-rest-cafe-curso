@@ -36,6 +36,10 @@ const getToken = async(req, res) => {
 
 }
 
+const getToken = (req, res) => {
+    res.json(req.body.token)
+}
+
 module.exports = {
     getToken
 }
