@@ -36,10 +36,11 @@ const getToken = async(req, res) => {
 
 }
 
-const getToken = (req, res) => {
+const getTokenGoogle = (req, res) => {
     res.json(req.body.token)
 }
 
 module.exports = {
-    getToken
+    getToken,
+    getTokenGoogle
 }
