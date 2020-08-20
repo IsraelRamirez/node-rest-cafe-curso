@@ -43,8 +43,12 @@ const verify = async(token) => {
         idToken: token,
         audience: process.env.CLIENT_ID,
     });
-    const payload = ticket.getPayload();
-    return payload
+    const payload = JSON.parse(ticket.getPayload());
+    return {
+        name: payload.name,
+        picture: payload.picture,
+        email: payload.email
+    }
 }
 
 const getTokenGoogle = (req, res) => {
