@@ -48,7 +48,13 @@ const verify = async(token) => {
 }
 
 const getTokenGoogle = (req, res) => {
-    res.json(verify(req.body.token))
+    verify(req.body.token)
+        .then((result) => {
+            res.json(result)
+        }).catch((err) => {
+            res.json(err)
+        });
+
 }
 
 module.exports = {
