@@ -43,7 +43,7 @@ const verify = async(token) => {
         idToken: token,
         audience: process.env.CLIENT_ID,
     });
-    const payload = JSON.parse(ticket.getPayload());
+    const payload = ticket.getPayload();
     return {
         name: payload.name,
         picture: payload.picture,
