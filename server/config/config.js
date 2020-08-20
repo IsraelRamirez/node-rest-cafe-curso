@@ -9,3 +9,5 @@ else
 process.env.CADUCIDAD_TOKEN = 15
     //SEED
 process.env.SEED = process.env.SEED || 'esto-esta-en-dev'
+    //Google Client ID
+process.env.CLIENT_ID = process.env.CLIENT_ID || "461171670308-5tmat1ob8510lljra1rf4nlmv5bd1pui.apps.googleusercontent.com"

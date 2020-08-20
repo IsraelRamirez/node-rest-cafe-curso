@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const errors = require('../errors')
+const { OAuth2Client } = require('google-auth-library');
+const client = new OAuth2Client(process.env.CLIENT_ID);
 
 const Usuario = require('../models/Usuario')
 
@@ -36,8 +38,17 @@ const getToken = async(req, res) => {
 
 }
 
+const verify = async(token) => {
+    const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: process.env.CLIENT_ID,
+    });
+    const payload = ticket.getPayload();
+    return payload
+}
+
 const getTokenGoogle = (req, res) => {
-    res.json(req.body.token)
+    res.json(verify(req.body.token))
 }
 
 module.exports = {
