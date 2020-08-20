@@ -5,3 +5,7 @@ if (process.env.NODE_ENV === 'dev')
     process.env.MONGODB = "mongodb://localhost:27017/cafe"
 else
     process.env.MONGODB = process.env.MONGO_URI
+    //Caducidad en minutos: 15 minutos
+process.env.CADUCIDAD_TOKEN = 15
+    //SEED
+process.env.SEED = process.env.SEED || 'esto-esta-en-dev'
