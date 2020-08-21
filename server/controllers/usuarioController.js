@@ -26,9 +26,6 @@ const getUsuarios = (req, res) => {
             })
         });
 }
-const getUsuario = (req, res) => {
-    const id = req.params.id
-}
 const newUsuario = (req, res) => {
     const newUserInfo = new Usuario(req.body)
     newUserInfo.password = bcrypt.hashSync(newUserInfo.password, 10)
@@ -89,7 +86,6 @@ const deleteUsuario = (req, res) => {
 
 module.exports = {
     getUsuarios,
-    getUsuario,
     newUsuario,
     setUsuario,
     deleteUsuario
