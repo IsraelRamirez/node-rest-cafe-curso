@@ -8,8 +8,9 @@ const categoriaSchema = new Schema({
         unique: true
     },
     usuario: {
-        type: String,
-        required: [true, 'El id del usuario es necesario']
+        type: Schema.Types.ObjectId,
+        required: [true, 'El id del usuario es necesario'],
+        ref: 'usuarios'
     }
 })
 

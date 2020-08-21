@@ -4,6 +4,8 @@ const _ = require('underscore')
 
 const getCategorias = async(req, res) => {
     const categories = await Categoria.find()
+        .sort('descripcion')
+        .populate('usuario', 'nombre email')
         .catch(err => {
             return res.status(500).json(errors.error(err))
         })
@@ -31,7 +33,7 @@ const getCategoria = async(req, res) => {
 const newCategoria = async(req, res) => {
     const _id = req.usuario._id
     if (!req.body.descripcion)
-        return res.status(400).json(errors.badRequest())
+        return res.status(400).json(errors.badRequest)
     const categoria = new Categoria({
         descripcion: req.body.descripcion,
         usuario: _id
@@ -57,7 +59,7 @@ const setCategoria = async(req, res) => {
     const idCategory = req.params.id
 
     if (!idCategory || !req.body.descripcion)
-        return res.status(400).json(errors.badRequest())
+        return res.status(400).json(errors.badRequest)
 
     const newCategoryInfo = _.pick(req.body, ['descripcion'])
     newCategoryInfo.usuario = _id
@@ -80,7 +82,7 @@ const deleteCategoria = async(req, res) => {
     const idCategory = req.params.id
 
     if (!idCategory)
-        return res.status(400).json(errors.badRequest())
+        return res.status(400).json(errors.badRequest)
 
     const category = await Categoria.findByIdAndDelete(idCategory)
         .catch(err => { return res.status(400).json(errors.error('El id ingresado no existe')) })
